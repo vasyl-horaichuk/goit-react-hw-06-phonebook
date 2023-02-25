@@ -9,9 +9,13 @@ const contactsSlice = createSlice({
   initialState: contactsInitialState,
   // Об'єкт редюсерів
   reducers: {
-    addContact(state, action) {},
+    addContact(state, action) {
+      console.log(state);
+      console.log(action);
+    },
     deleteContact(state, action) {},
   },
 });
 
+export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
