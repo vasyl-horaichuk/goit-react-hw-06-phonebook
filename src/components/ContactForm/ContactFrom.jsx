@@ -2,8 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, FormLabel, FormInput, FormButton } from './ContactForm.styled';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'components/redux/contactsSlice';
-import { nanoid } from 'nanoid';
+import { addContact } from 'redux/contactsSlice';
+// import { nanoid } from 'nanoid';
 
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -29,7 +29,6 @@ export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const contact = {
-      id: nanoid(),
       name,
       number,
     };
