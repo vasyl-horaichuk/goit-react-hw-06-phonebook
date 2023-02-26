@@ -9,8 +9,13 @@ const filterSlice = createSlice({
   initialState: filterInitialState,
   // Об'єкт редюсерів
   reducers: {
-    setFilterValue(state, action) {},
+    setFilterValue(state, action) {
+      state = action.payload;
+      return state;
+    },
   },
 });
+
+export const { setFilterValue } = filterSlice.actions;
 
 export const filterReducer = filterSlice.reducer;

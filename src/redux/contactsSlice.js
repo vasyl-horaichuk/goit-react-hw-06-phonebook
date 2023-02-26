@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const contactsInitialState = '';
+const contactsInitialState = [];
 
 const contactsSlice = createSlice({
   // Ім'я слайсу
@@ -10,10 +10,12 @@ const contactsSlice = createSlice({
   // Об'єкт редюсерів
   reducers: {
     addContact(state, action) {
-      // console.log(action);
-      console.log(state);
+      state.push(action.payload);
     },
-    deleteContact(state, action) {},
+    deleteContact(state, action) {
+      const index = state.findIndex(contact => contact.id === action.payload);
+      state.splice(index, 1);
+    },
   },
 });
 

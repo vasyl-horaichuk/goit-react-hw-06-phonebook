@@ -1,24 +1,23 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Form, FormLabel, FormInput, FormButton } from './ContactForm.styled';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-// import { nanoid } from 'nanoid';
+import { useState } from "react";
+import { Form, FormLabel, FormInput, FormButton } from "./ContactForm.styled";
+import { useDispatch } from "react-redux";
+import { addContact } from "redux/contactsSlice";
+import { nanoid } from "nanoid";
 
-export const ContactForm = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+export const ContactForm = () => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleChange = evt => {
+  const handleChange = (evt) => {
     const { name, value } = evt.target;
 
     switch (name) {
-      case 'name':
+      case "name":
         setName(value);
         break;
-      case 'number':
+      case "number":
         setNumber(value);
         break;
       default:
@@ -26,16 +25,16 @@ export const ContactForm = ({ onSubmit }) => {
     }
   };
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
     const contact = {
+      id: nanoid(6),
       name,
       number,
     };
     dispatch(addContact(contact));
-    setName('');
-    setNumber('');
-    evt.reset();
+    setName("");
+    setNumber("");
   };
 
   return (
@@ -67,10 +66,4 @@ export const ContactForm = ({ onSubmit }) => {
       <FormButton type="submit">Add contacts</FormButton>
     </Form>
   );
-};
-
-ContactForm.prototypes = {
-  name: PropTypes.string,
-  number: PropTypes.number,
-  onSubmit: PropTypes.func,
 };
